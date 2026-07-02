@@ -5,847 +5,362 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Twelvetooo Smart Projection Bulb — 亚马逊美国站市场调研报告</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
 
-  body {
-    font-family: 'Inter', 'Microsoft YaHei', -apple-system, sans-serif;
-    background: #f6f2f2;
-    color: #1e1825;
-    line-height: 1.9;
-    overflow-x: hidden;
-    font-size: 18px;
+  body{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: #f8f6f8;
+    color: #1a1625;
+    line-height: 1.8;
+    font-size: 16px;
   }
 
-  /* ===== 极光背景 ===== */
-  .aurora-sky {
-    position: fixed; top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: -1; overflow: hidden;
+  .aurora{
+    position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden;
     background:
-      radial-gradient(ellipse 65% 35% at 20% 15%, rgba(120,60,200,0.08) 0%, transparent 50%),
-      radial-gradient(ellipse 55% 30% at 80% 30%, rgba(40,120,220,0.06) 0%, transparent 50%),
-      radial-gradient(ellipse 45% 25% at 50% 60%, rgba(200,80,160,0.04) 0%, transparent 50%),
-      linear-gradient(170deg, #f8f4f8 0%, #f0ecf5 50%, #ece8f5 100%);
+      radial-gradient(ellipse 60% 30% at 15% 10%, rgba(140,80,220,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 25% at 85% 20%, rgba(60,140,240,0.04) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 20% at 50% 40%, rgba(200,80,160,0.03) 0%, transparent 50%),
+      linear-gradient(180deg,#faf8fc 0%,#f5f0f8 100%);
   }
-  .aurora-band {
-    position: absolute; border-radius: 50%; filter: blur(120px);
-    pointer-events: none; mix-blend-mode: screen; opacity: 0.4;
+  .band{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;mix-blend-mode:screen;opacity:0.3}
+  .b1{top:-10%;left:-5%;width:50%;height:40%;background:radial-gradient(ellipse,rgba(140,80,220,0.08) 0%,transparent 65%);animation:f1 15s ease-in-out infinite alternate}
+  .b2{top:20%;right:-10%;width:45%;height:35%;background:radial-gradient(ellipse,rgba(60,140,240,0.05) 0%,transparent 60%);animation:f2 18s ease-in-out infinite alternate}
+  .b3{bottom:0;left:15%;width:40%;height:30%;background:radial-gradient(ellipse,rgba(200,80,160,0.03) 0%,transparent 55%);animation:f3 16s ease-in-out infinite alternate}
+  @keyframes f1{0%{transform:translate(0,0)scale(1);opacity:0.25}100%{transform:translate(4%,3%)scale(1.1);opacity:0.45}}
+  @keyframes f2{0%{transform:translate(0,0)scale(1);opacity:0.2}100%{transform:translate(-3%,-2%)scale(1.08);opacity:0.35}}
+  @keyframes f3{0%{transform:translate(0,0)scale(1);opacity:0.15}100%{transform:translate(2%,-3%)scale(1.05);opacity:0.25}}
+
+  .wrap{max-width:1100px;margin:0 auto;padding:0 28px}
+
+  .navbar{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,0.75);backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(140,80,220,0.06);
+    padding:0 28px;overflow-x:auto;white-space:nowrap;
+    -webkit-overflow-scrolling:touch;
   }
-  .band-1 { top: -5%; left: -5%; width: 55%; height: 45%; background: radial-gradient(ellipse, rgba(140,80,220,0.10) 0%, transparent 65%); animation: d1 16s ease-in-out infinite alternate; }
-  .band-2 { top: 25%; right: -10%; width: 50%; height: 40%; background: radial-gradient(ellipse, rgba(60,140,240,0.06) 0%, transparent 60%); animation: d2 20s ease-in-out infinite alternate; }
-  .band-3 { bottom: 5%; left: 20%; width: 45%; height: 35%; background: radial-gradient(ellipse, rgba(220,80,160,0.04) 0%, transparent 55%); animation: d3 18s ease-in-out infinite alternate; }
-  @keyframes d1 { 0%{transform:translate(0,0)scale(1);opacity:0.3} 50%{transform:translate(6%,4%)scale(1.1);opacity:0.6} 100%{transform:translate(-3%,-2%)scale(0.9);opacity:0.4} }
-  @keyframes d2 { 0%{transform:translate(0,0)scale(1);opacity:0.2} 50%{transform:translate(-5%,-3%)scale(1.15);opacity:0.5} 100%{transform:translate(4%,5%)scale(0.95);opacity:0.3} }
-  @keyframes d3 { 0%{transform:translate(0,0)scale(1);opacity:0.15} 50%{transform:translate(3%,-5%)scale(1.1);opacity:0.4} 100%{transform:translate(-2%,3%)scale(0.85);opacity:0.25} }
-
-  .container { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
-
-  /* ===== 封面 ===== */
-  .cover {
-    min-height: 90vh; display: flex; flex-direction: column;
-    justify-content: center; align-items: center; text-align: center;
-    padding: 80px 28px; position: relative;
+  .navbar-inner{max-width:1100px;margin:0 auto;display:flex;gap:0;align-items:center;height:44px}
+  .navbar a{
+    color:rgba(60,40,80,0.5);text-decoration:none;font-size:13px;padding:0 14px;
+    transition:color 0.2s;flex-shrink:0;
   }
-  .cover::after {
-    content: ''; position: absolute; top: 50%; left: 50%;
-    width: 700px; height: 700px; transform: translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(140,80,220,0.05) 0%, rgba(60,140,240,0.02) 30%, transparent 60%);
-    border-radius: 50%; filter: blur(80px);
-    animation: cg 6s ease-in-out infinite alternate;
+  .navbar a:hover{color:#5a3d7a}
+  .navbar .sep{color:rgba(140,80,220,0.1);font-size:12px;flex-shrink:0}
+
+  .hero{text-align:center;padding:80px 28px 48px}
+  .hero-badge{
+    display:inline-block;padding:6px 24px;border-radius:100px;
+    background:linear-gradient(135deg,rgba(140,80,220,0.06),rgba(60,140,240,0.04));
+    border:1px solid rgba(140,80,220,0.06);
+    font-size:12px;letter-spacing:2px;color:rgba(100,60,160,0.4);margin-bottom:24px;
   }
-  @keyframes cg { 0%{transform:translate(-50%,-50%)scale(1);opacity:0.3} 100%{transform:translate(-50%,-50%)scale(1.5);opacity:0.7} }
-
-  .cover-badge {
-    display: inline-block; padding: 8px 28px; border-radius: 100px;
-    background: linear-gradient(135deg, rgba(140,80,220,0.08), rgba(60,140,240,0.06));
-    border: 1px solid rgba(140,80,220,0.08);
-    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
-    color: rgba(100,60,160,0.5); margin-bottom: 32px; position: relative; z-index: 1;
+  .hero h1{
+    font-size:clamp(32px,4vw,52px);font-weight:800;line-height:1.15;margin-bottom:10px;
+    background:linear-gradient(135deg,#3a2060 0%,#6b3fa0 35%,#3a7abf 65%,#a0507a 100%);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    background-size:200% auto;animation:gs 8s ease-in-out infinite alternate;
   }
-  .cover h1 {
-    font-size: clamp(42px, 5.5vw, 66px); font-weight: 800; line-height: 1.12;
-    margin-bottom: 14px; position: relative; z-index: 1;
-    background: linear-gradient(135deg, #3a2060 0%, #6b3fa0 30%, #3a7abf 60%, #a0507a 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    background-size: 200% auto; animation: gs 8s ease-in-out infinite alternate;
+  @keyframes gs{0%{background-position:0% center}100%{background-position:100% center}}
+  .hero-sub{font-size:17px;color:rgba(80,60,100,0.45);font-weight:300;margin-bottom:6px}
+  .hero-meta{font-size:13px;color:rgba(80,60,100,0.3);display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+
+  .summary-row{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0 32px}
+  .summary-card{
+    flex:1;min-width:150px;padding:16px 20px;
+    background:rgba(255,255,255,0.5);border-radius:10px;border:1px solid rgba(200,180,220,0.08);
   }
-  @keyframes gs { 0%{background-position:0% center} 100%{background-position:100% center} }
-  .cover-sub { font-size: clamp(18px, 2.2vw, 24px); color: rgba(80,60,100,0.55); font-weight: 300; margin-bottom: 36px; position: relative; z-index: 1; }
-  .cover-meta { display: flex; flex-wrap: wrap; gap: 14px 28px; justify-content: center; font-size: 13px; color: rgba(80,60,100,0.4); position: relative; z-index: 1; }
+  .summary-card .lbl{font-size:11px;color:rgba(80,60,100,0.35);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px}
+  .summary-card .num{font-size:22px;font-weight:700;color:#3a2060;line-height:1.2}
+  .summary-card .desc{font-size:12px;color:rgba(80,60,100,0.4);margin-top:2px}
 
-  .bulb-wrap { position: relative; z-index: 1; margin-bottom: 32px; }
-  .bulb-wrap svg { width: 80px; height: 115px; filter: drop-shadow(0 0 30px rgba(140,80,220,0.08)); }
+  .section{margin:0 0 40px}
 
-  /* ===== 目录 ===== */
-  .toc-bar {
-    background: rgba(255,255,255,0.45); backdrop-filter: blur(12px);
-    border: 1px solid rgba(140,80,220,0.04);
-    border-radius: 16px; padding: 36px 40px; margin: 32px 0 56px;
+  .sec-header{
+    display:flex;align-items:baseline;gap:12px;margin-bottom:18px;padding-bottom:10px;
+    border-bottom:1px solid rgba(140,80,220,0.05);
   }
-  .toc-bar h2 { font-size: 14px; font-weight: 600; color: rgba(100,60,160,0.5); margin-bottom: 20px; letter-spacing: 2px; }
-  .toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 4px 24px; }
-  .toc-grid a { color: rgba(60,40,80,0.6); text-decoration: none; font-size: 14px; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; display: block; }
-  .toc-grid a:hover { color: #5a3d7a; background: rgba(140,80,220,0.03); transform: translateX(3px); }
-
-  /* ===== 板块 ===== */
-  .block { margin: 48px 0; }
-
-  /* 标题横幅样式 - 左粗色条 + 标题 */
-  .block-hdr {
-    display: flex; align-items: stretch; gap: 0; margin-bottom: 20px;
+  .sec-header .tag{
+    font-size:12px;font-weight:600;color:rgba(100,60,160,0.45);letter-spacing:0.5px;white-space:nowrap;
   }
-  .block-hdr .bar {
-    width: 5px; border-radius: 3px; flex-shrink: 0;
-    background: linear-gradient(180deg, #6b3fa0, #3a7abf);
+  .sec-header h2{
+    font-size:20px;font-weight:700;
+    background:linear-gradient(135deg,#3a2060,#5a3d8a);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   }
-  .block-hdr .content {
-    padding: 6px 0 6px 18px;
+  .sec-header .sub{font-size:12px;color:rgba(80,60,100,0.25);margin-left:auto;white-space:nowrap}
+
+  .tbl-wrap{overflow-x:auto;margin:12px 0 16px;border-radius:8px;border:1px solid rgba(200,180,220,0.06)}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  thead th{
+    background:linear-gradient(135deg,rgba(100,60,160,0.04),rgba(60,120,200,0.03));
+    color:rgba(80,50,120,0.8);font-weight:600;text-align:left;
+    padding:11px 16px;font-size:12px;letter-spacing:0.2px;
+    border-bottom:1px solid rgba(140,80,220,0.04)
   }
-  .block-hdr .num {
-    font-size: 14px; font-weight: 700; color: rgba(100,60,160,0.6);
-    letter-spacing: 1px; margin-bottom: 2px;
+  tbody td{padding:9px 16px;color:rgba(30,24,37,0.75);line-height:1.5;border-bottom:1px solid rgba(200,180,220,0.02)}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover td{background:rgba(140,80,220,0.008)}
+  .hl{color:#4a7abf;font-weight:600}
+  .ok{color:#5a8f5a}
+  .bad{color:#b85050}
+
+  .tg{display:inline-block;padding:2px 10px;border-radius:5px;font-size:11px;font-weight:600}
+  .tg-r{background:rgba(184,80,80,0.05);color:#b85050}
+  .tg-y{background:rgba(184,134,11,0.05);color:#b8860b}
+  .tg-g{background:rgba(90,143,90,0.04);color:#5a8f5a}
+  .tg-b{background:rgba(74,122,191,0.05);color:#4a7abf}
+
+  blockquote{
+    border-left:2px solid rgba(140,80,220,0.08);background:rgba(140,80,220,0.01);
+    border-radius:0 6px 6px 0;padding:12px 20px;margin:10px 0;
+    font-size:13px;color:rgba(60,40,80,0.55);line-height:1.6
   }
-  .block-hdr .title {
-    font-size: 26px; font-weight: 700;
-    background: linear-gradient(135deg, #3a2060, #5a3d8a);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    line-height: 1.3;
+  blockquote strong{color:#5a3d7a}
+
+  .tag-group{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+  .tag-item{font-size:12px;padding:4px 12px;border-radius:5px;background:rgba(140,80,220,0.02);color:rgba(60,40,80,0.55)}
+
+  .metric-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+  .metric-item{flex:1;min-width:140px;padding:12px 16px}
+  .metric-item .ml{font-size:11px;color:rgba(80,60,100,0.3);text-transform:uppercase;letter-spacing:0.3px}
+  .metric-item .mv{font-size:16px;font-weight:600;color:#3a2060}
+
+  .swot-g{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:10px 0}
+  @media(max-width:640px){.swot-g{grid-template-columns:1fr}}
+  .swot-it h4{font-size:14px;font-weight:700;margin-bottom:4px}
+  .swot-it ul{list-style:none;padding:0}
+  .swot-it li{font-size:13px;color:rgba(30,24,37,0.65);padding:3px 0 3px 16px;position:relative;line-height:1.5}
+  .swot-it li::before{content:'';position:absolute;left:0;top:11px;width:4px;height:4px;border-radius:50%}
+  .swot-s h4{color:#5a8f5a}.swot-s li::before{background:#5a8f5a}
+  .swot-w h4{color:#b85050}.swot-w li::before{background:#b85050}
+  .swot-o h4{color:#4a7abf}.swot-o li::before{background:#4a7abf}
+  .swot-t h4{color:#b8860b}.swot-t li::before{background:#b8860b}
+
+  hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(140,80,220,0.03),transparent);margin:28px 0}
+  .footer{text-align:center;padding:40px 28px;color:rgba(60,40,80,0.1);font-size:12px;border-top:1px solid rgba(140,80,220,0.02);margin-top:48px}
+
+  @media(max-width:768px){
+    body{font-size:15px}
+    .wrap{padding:0 16px}
+    .navbar{padding:0 16px}
+    .sec-header h2{font-size:17px}
+    table{font-size:13px}
+    thead th,tbody td{padding:7px 10px}
+    .summary-card .num{font-size:18px}
   }
-  .block-hdr .sub {
-    font-size: 13px; color: rgba(80,60,100,0.4);
-  }
-
-  .block-body {
-    padding: 4px 0 4px 23px;
-    border-left: 1px solid rgba(140,80,220,0.06);
-    margin-left: 2px;
-  }
-  .block-body p {
-    font-size: 16px; color: rgba(30,24,37,0.8);
-    margin-bottom: 14px; line-height: 1.8;
-  }
-
-  /* 表格 */
-  .table-wrap { overflow-x: auto; margin: 12px 0 16px; border-radius: 8px; border: 1px solid rgba(200,180,220,0.06); }
-  table { width: 100%; border-collapse: collapse; font-size: 15px; }
-  thead th {
-    background: linear-gradient(135deg, rgba(100,60,160,0.04), rgba(60,120,200,0.03));
-    color: rgba(80,50,120,0.85); font-weight: 600; text-align: left;
-    padding: 14px 18px; font-size: 13px; letter-spacing: 0.3px;
-    border-bottom: 1px solid rgba(140,80,220,0.04);
-  }
-  tbody td { padding: 11px 16px; color: rgba(30,24,37,0.8); line-height: 1.6; border-bottom: 1px solid rgba(200,180,220,0.03); }
-  tbody tr:last-child td { border-bottom: none; }
-  tbody tr:hover td { background: rgba(140,80,220,0.01); }
-  .hl { color: #4a7abf; font-weight: 600; }
-  .hl-gold { color: #b8860b; font-weight: 600; }
-  .ok { color: #5a8f5a; }
-  .bad { color: #b85050; }
-
-  /* 引用块 */
-  blockquote {
-    border-left: 3px solid rgba(140,80,220,0.10);
-    background: rgba(140,80,220,0.015);
-    border-radius: 0 8px 8px 0;
-    padding: 16px 24px; margin: 14px 0;
-    font-size: 15px; color: rgba(60,40,80,0.7); line-height: 1.7;
-  }
-  blockquote strong { color: #5a3d7a; }
-
-  /* 标签 */
-  .tag { display: inline-block; padding: 2px 10px; border-radius: 5px; font-size: 11px; font-weight: 600; }
-  .tag-red { background: rgba(184,80,80,0.05); color: #b85050; }
-  .tag-yellow { background: rgba(184,134,11,0.05); color: #b8860b; }
-  .tag-green { background: rgba(90,143,90,0.04); color: #5a8f5a; }
-  .tag-blue { background: rgba(74,122,191,0.05); color: #4a7abf; }
-  .tag-purple { background: rgba(140,80,220,0.05); color: #7a4abf; }
-
-  /* 指标卡片 - 无边框的浮动 */
-  .metric-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; }
-  .metric-item { flex: 1; min-width: 150px; padding: 14px 18px; }
-  .metric-item .m-label { font-size: 11px; color: rgba(80,60,100,0.35); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-  .metric-item .m-value { font-size: 17px; font-weight: 700; color: #3a2060; }
-
-  /* 标签组 */
-  .tag-group { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
-  .tag-item { font-size: 14px; padding: 5px 14px; border-radius: 6px; background: rgba(140,80,220,0.03); color: rgba(60,40,80,0.7); }
-
-  /* SWOT - 行内风格 */
-  .swot-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 12px 0; }
-  @media (max-width:640px) { .swot-row { grid-template-columns: 1fr; } }
-  .swot-item { padding: 0; }
-  .swot-item h4 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
-  .swot-item ul { list-style: none; padding: 0; }
-  .swot-item li { font-size: 15px; color: rgba(30,24,37,0.75); padding: 4px 0 4px 18px; position: relative; line-height: 1.6; }
-  .swot-item li::before { content: ''; position: absolute; left: 0; top: 12px; width: 4px; height: 4px; border-radius: 50%; }
-  .swot-s h4 { color: #5a8f5a; } .swot-s li::before { background: #5a8f5a; }
-  .swot-w h4 { color: #b85050; } .swot-w li::before { background: #b85050; }
-  .swot-o h4 { color: #4a7abf; } .swot-o li::before { background: #4a7abf; }
-  .swot-t h4 { color: #b8860b; } .swot-t li::before { background: #b8860b; }
-
-  .signal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; margin: 10px 0; }
-  .signal-item { padding: 14px 18px; border-left: 2px solid rgba(90,143,90,0.12); font-size: 15px; color: rgba(30,24,37,0.8); }
-  .signal-item .src { font-size: 12px; color: rgba(80,60,100,0.3); margin-top: 4px; }
-
-  .method-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 10px 0; }
-  .method-item { flex: 1; min-width: 160px; padding: 16px 18px; text-align: center; }
-  .method-item .ico { font-size: 28px; margin-bottom: 4px; }
-  .method-item .ml { font-size: 11px; color: rgba(80,60,100,0.3); text-transform: uppercase; }
-  .method-item .mv { font-size: 17px; font-weight: 700; color: #3a2060; margin: 2px 0; }
-  .method-item .ms { font-size: 12px; color: rgba(80,60,100,0.4); }
-
-  .ebc-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
-  .ebc-item { flex: 1; min-width: 140px; padding: 12px 16px; text-align: center; }
-  .ebc-item .ei { font-size: 24px; margin-bottom: 2px; }
-  .ebc-item .et { font-size: 15px; font-weight: 600; color: #5a3d7a; }
-  .ebc-item .es { font-size: 11px; color: rgba(80,60,100,0.3); }
-
-  hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, rgba(140,80,220,0.03), transparent); margin: 32px 0; }
-
-  .footer { text-align: center; padding: 56px 28px 36px; color: rgba(60,40,80,0.18); font-size: 13px; border-top: 1px solid rgba(140,80,220,0.02); margin-top: 64px; }
-
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 10px 0; }
-  @media (max-width:640px) { .grid-2 { grid-template-columns: 1fr; } }
-  .grid-item { padding: 14px 18px; }
-  .grid-item .gi { font-size: 26px; margin-bottom: 4px; }
-  .grid-item .gt { font-size: 17px; font-weight: 700; color: #3a2060; }
-  .grid-item .gs { font-size: 14px; color: rgba(30,24,37,0.65); margin-top: 2px; }
-
-  @media (max-width:768px) {
-    body { font-size: 16px; }
-    .container { padding: 0 16px; }
-    .block-hdr .title { font-size: 20px; }
-    .block-body { padding-left: 16px; }
-    .toc-bar { padding: 24px; }
-    .toc-grid { grid-template-columns: 1fr; }
-    table { font-size: 14px; }
-    thead th, tbody td { padding: 8px 10px; }
-  }
-  @media print {
-    body { background: #fff; color: #222; }
-    .aurora-sky { display: none; }
-    .cover { min-height: auto; padding: 40px 0; }
+  @media print{
+    body{background:#fff;color:#222;font-size:12px}
+    .aurora{display:none}
+    .navbar{display:none}
+    .hero{padding:40px 28px}
   }
 </style>
 </head>
 <body>
 
-<div class="aurora-sky">
-  <div class="aurora-band band-1"></div>
-  <div class="aurora-band band-2"></div>
-  <div class="aurora-band band-3"></div>
+<div class="aurora">
+  <div class="band b1"></div>
+  <div class="band b2"></div>
+  <div class="band b3"></div>
 </div>
 
-<section class="cover">
-  <div class="bulb-wrap">
-    <svg viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="bg" x1="50" y1="0" x2="50" y2="140">
-          <stop offset="0%" stop-color="#7a4abf"/><stop offset="40%" stop-color="#4a7abf"/>
-          <stop offset="70%" stop-color="#8a5a9a"/><stop offset="100%" stop-color="#a0607a"/>
-        </linearGradient>
-        <radialGradient id="gl" cx="50%" cy="25%" r="50%">
-          <stop offset="0%" stop-color="rgba(140,80,220,0.06)"/><stop offset="100%" stop-color="transparent"/>
-        </radialGradient>
-      </defs>
-      <ellipse cx="50" cy="28" rx="34" ry="35" fill="url(#gl)"/>
-      <path d="M50 10C32 10 22 22 22 36c0 16 12 25 14 32l2 7c1 4 4 6 12 6s11-2 12-6l2-7c2-7 14-16 14-32 0-14-10-26-28-26z" fill="rgba(255,255,255,0.2)" stroke="url(#bg)" stroke-width="1.8"/>
-      <path d="M42 24c-3 5-3 12 0 17M50 19c-5 7-5 19 0 26M58 24c3 5 3 12 0 17" stroke="rgba(140,80,220,0.18)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-      <rect x="38" y="78" width="24" height="5" rx="2.5" fill="rgba(140,80,220,0.08)"/>
-      <rect x="38" y="87" width="24" height="5" rx="2.5" fill="rgba(140,80,220,0.06)"/>
-      <rect x="38" y="96" width="24" height="5" rx="2.5" fill="rgba(140,80,220,0.04)"/>
-      <rect x="38" y="105" width="24" height="5" rx="2.5" fill="rgba(140,80,220,0.03)"/>
-    </svg>
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="#s1">产品概述</a><span class="sep">|</span>
+    <a href="#s4">搜索趋势</a><span class="sep">|</span>
+    <a href="#s5">竞争格局</a><span class="sep">|</span>
+    <a href="#s6">价格</a><span class="sep">|</span>
+    <a href="#s10">SWOT</a><span class="sep">|</span>
+    <a href="#s12">Govee对比</a><span class="sep">|</span>
+    <a href="#s16">路线图</a><span class="sep">|</span>
+    <a href="#a1" style="color:#b8860b;">财务</a><span class="sep">|</span>
+    <a href="#a4" style="color:#b8860b;">广告词</a><span class="sep">|</span>
+    <a href="#a6" style="color:#b8860b;">应急</a>
   </div>
-  <div class="cover-badge">Market Research Report</div>
-  <h1>Twelvetooo<br>Smart Projection Bulb</h1>
-  <p class="cover-sub">亚马逊美国站 · 完整市场调研报告</p>
-  <div class="cover-meta"><span>📅 2026年7月1日</span><span>🎯 Amazon US</span><span>💡 卖家精灵 + 品牌分析</span></div>
-</section>
+</nav>
 
-<div class="container">
+<div class="wrap">
 
-<div class="toc-bar">
-  <h2>📋 目录</h2>
-  <div class="toc-grid">
-    <a href="#s1">一、产品概述</a><a href="#s2">二、市场宏观环境</a><a href="#s3">三、目标类目分析</a>
-    <a href="#s4">四、搜索趋势分析</a><a href="#s5">五、竞争格局分析</a><a href="#s6">六、价格分析</a>
-    <a href="#s7">七、Review与口碑分析</a><a href="#s8">八、广告投放基准</a><a href="#s9">九、季节性趋势</a>
-    <a href="#s10">十、SWOT分析</a><a href="#s11">十一、目标人群画像</a><a href="#s12">十二、产品定位与差异化</a>
-    <a href="#s13">十三、Listing策略建议</a><a href="#s14">十四、营销与推广</a><a href="#s15">十五、风险与挑战</a>
-    <a href="#s16">十六、行动路线图</a><a href="#s17">十七、附录：竞品ASIN</a>
-  </div>
-  <div style="border-top:1px solid rgba(184,134,11,0.15);margin:12px 0 10px;"></div>
-  <div style="font-size:12px;color:#b8860b;font-weight:600;letter-spacing:1px;margin-bottom:8px;padding:0 10px;">执 行 附 录</div>
-  <div class="toc-grid">
-    <a href="#a1" style="color:#b8860b;font-weight:600;">▸ A1. 财务模型</a><a href="#a2" style="color:#b8860b;font-weight:600;">▸ A2. 专利排查</a><a href="#a3" style="color:#b8860b;font-weight:600;">▸ A3. 技术实测</a>
-    <a href="#a4" style="color:#b8860b;font-weight:600;">▸ A4. 广告词表</a><a href="#a5" style="color:#b8860b;font-weight:600;">▸ A5. 红人清单</a><a href="#a6" style="color:#b8860b;font-weight:600;">▸ A6. 应急计划</a>
-  </div>
+<div class="hero">
+  <div class="hero-badge">MARKET RESEARCH REPORT</div>
+  <h1>Twelvetooo Smart Projection Bulb</h1>
+  <p class="hero-sub">亚马逊美国站 · 完整市场调研</p>
+  <div class="hero-meta"><span>📅 2026年7月1日</span><span>🎯 Amazon US</span><span>📊 卖家精灵 + 品牌分析</span></div>
 </div>
 
-<!-- 01 -->
-<div class="block" id="s1">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 01</div><div class="title">产品概述</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <tbody>
-          <tr><td style="width:130px;font-weight:600;color:#6b5090;">产品名称</td><td>Twelvetooo Smart Projection Bulb</td></tr>
-          <tr><td style="font-weight:600;color:#6b5090;">产品类型</td><td>E26/E26 标准螺口智能LED灯泡 + 极光投影</td></tr>
-          <tr><td style="font-weight:600;color:#6b5090;">核心参数</td><td>1600万色RGB + 可调色温 (2700K-6500K)</td></tr>
-          <tr><td style="font-weight:600;color:#6b5090;">投影效果</td><td>Aurora极光风格动态流动光影</td></tr>
-          <tr><td style="font-weight:600;color:#6b5090;">音乐律动</td><td>内置麦克风，灯光随音乐律动</td></tr>
-          <tr><td style="font-weight:600;color:#6b5090;">控制方式</td><td>Surp Life App / Amazon Alexa / Google Home</td></tr>
-          <tr><td style="font-weight:600;color:#6b5090;">安装方式</td><td>拧入标准E26灯座，零门槛</td></tr>
-          <tr><td style="font-weight:600;color:#6b5090;">认证情况</td><td>CE/TUV/FDA/ROHS/PSE <span class="tag tag-yellow" style="margin-left:6px;">需确认FCC/UL</span></td></tr>
-          <tr><td style="font-weight:600;color:#6b5090;">Kickstarter</td><td>$47,414筹集 / 1,239%达成 / 751+支持者</td></tr>
-          <tr><td style="font-weight:600;color:#6b5090;">预计发货</td><td>2026年8月</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="tag-group">
-      <span class="tag-item">✨ 品类创新 — 首款E26螺口投影灯泡</span>
-      <span class="tag-item">🔩 零门槛安装 — 拧入即可</span>
-      <span class="tag-item">🔀 多功能合一 — 照明+投影+音乐+智能</span>
-      <span class="tag-item">🏭 13年LED制造经验</span>
-    </div>
-  </div>
+<div class="summary-row">
+  <div class="summary-card"><div class="lbl">品类现状</div><div class="num">0竞品</div><div class="desc">E26投影灯泡品类空白</div></div>
+  <div class="summary-card"><div class="lbl">推荐定价</div><div class="num">$29.99</div><div class="desc">毛利率 50-55%</div></div>
+  <div class="summary-card"><div class="lbl">上线时机</div><div class="num">10月</div><div class="desc">Q4旺季月销+60%</div></div>
+  <div class="summary-card"><div class="lbl">CPC最低</div><div class="num">$0.35</div><div class="desc">mood light 精准词</div></div>
 </div>
 
-<!-- 02 -->
-<div class="block" id="s2">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 02</div><div class="title">市场宏观环境</div></div></div>
-  <div class="block-body">
-    <p>全球智能照明市场2025年规模约$214亿，CAGR 20.3%，预计2030年达到$555亿。情绪照明、星空投影灯等细分赛道均保持5-9%的稳健增长。</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>细分市场</th><th>2025年规模</th><th>CAGR</th><th>对Twelvetooo的意义</th></tr></thead>
-        <tbody>
-          <tr><td>全球智能照明</td><td>$214亿</td><td class="hl-gold">20.3%</td><td>最大红利来源</td></tr>
-          <tr><td>情绪照明</td><td>$5.07亿</td><td class="hl-gold">4.8%</td><td>精准赛道</td></tr>
-          <tr><td>星空投影灯</td><td>$3.5-4亿</td><td class="hl-gold">5.8-8.5%</td><td>最相关赛道</td></tr>
-          <tr><td>夜灯投影仪</td><td>$24亿</td><td class="hl-gold">8.8%</td><td>泛品类参考</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <blockquote>Twelvetooo处于智能照明+情绪照明+投影灯三个赛道交汇点，品类跨界优势明显。</blockquote>
+<div class="section" id="s1">
+  <div class="sec-header"><span class="tag">01</span><h2>产品概述</h2><span class="sub">Product Overview</span></div>
+  <div class="tbl-wrap">
+    <table>
+      <tr><td style="width:120px;font-weight:600;color:#5a3d7a;">产品名称</td><td>Twelvetooo Smart Projection Bulb</td></tr>
+      <tr><td style="font-weight:600;color:#5a3d7a;">产品类型</td><td>E26/E26 标准螺口 LED + 极光投影</td></tr>
+      <tr><td style="font-weight:600;color:#5a3d7a;">核心参数</td><td>1600万色 RGB + 可调色温 2700K-6500K</td></tr>
+      <tr><td style="font-weight:600;color:#5a3d7a;">控制方式</td><td>Surp Life App / Alexa / Google Home</td></tr>
+      <tr><td style="font-weight:600;color:#5a3d7a;">安装</td><td>拧入 E26 灯座，零门槛</td></tr>
+      <tr><td style="font-weight:600;color:#5a3d7a;">认证</td><td>CE/TUV/FDA/ROHS/PSE <span class="tg tg-y" style="margin-left:4px;">需确认 FCC/UL</span></td></tr>
+      <tr><td style="font-weight:600;color:#5a3d7a;">Kickstarter</td><td>$47,414 / 1,239% / 751+支持者</td></tr>
+    </table>
   </div>
+  <blockquote><strong>操作建议：</strong>7月内确认FCC/UL认证。751+Kickstarter种子用户是首批Review最佳来源。</blockquote>
 </div>
 
-<!-- 03 -->
-<div class="block" id="s3">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 03</div><div class="title">目标类目分析</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>优先级</th><th>类目路径</th><th>流量</th><th>竞争</th></tr></thead>
-        <tbody>
-          <tr><td><span class="tag tag-yellow">首选</span></td><td>LED Light Bulbs (3024101011)</td><td><span class="hl">极大</span></td><td>高</td></tr>
-          <tr><td><span class="tag tag-blue">次选</span></td><td>Novelty Lighting</td><td>中等</td><td><span class="ok">低</span></td></tr>
-          <tr><td><span class="tag tag-purple">第三</span></td><td>Smart Lighting</td><td>中等</td><td>中低</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <blockquote>BSR归属LED Light Bulbs主类目，同时叠加Novelty Lighting获得双入口曝光。</blockquote>
+<div class="section" id="s4">
+  <div class="sec-header"><span class="tag">04</span><h2>搜索趋势分析</h2><span class="sub">卖家精灵数据 2026.05</span></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>关键词</th><th>月搜索量</th><th>PPC</th><th>购买率</th><th>策略</th></tr></thead>
+      <tr><td>smart light bulbs</td><td><span class="hl">82,381</span></td><td>$1.06</td><td>4.03%</td><td>成熟期主攻</td></tr>
+      <tr><td>party lights</td><td><span class="hl">48,889</span></td><td>$0.87</td><td>2.72%</td><td>场景词</td></tr>
+      <tr><td>mood lighting</td><td><span class="hl">36,982</span></td><td><span class="ok">$0.70</span></td><td>1.31%</td><td><span class="tg tg-g">冷启动首选</span></td></tr>
+      <tr><td>galaxy light projector</td><td><span class="hl">32,927</span></td><td>$1.20</td><td>2.60%</td><td>推广期</td></tr>
+      <tr><td>mood light</td><td>10,230</td><td><span class="ok">$0.35</span></td><td>1.82%</td><td>极低CPC</td></tr>
+      <tr><td>projection light bulb</td><td><span class="bad">≈0</span></td><td>—</td><td>0%</td><td><span class="tg tg-y">品类空白</span></td></tr>
+    </table>
+  </div>
+  <blockquote><strong>核心发现：</strong>projection light bulb 搜索量为0，全新品类。冷启动靠 mood lighting($0.70) 和 mood light($0.35) 引流。</blockquote>
+</div>
+
+<div class="section" id="s5">
+  <div class="sec-header"><span class="tag">05</span><h2>竞争格局分析</h2><span class="sub">Competitive Landscape</span></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>品牌</th><th>产品</th><th>月销量</th><th>价格</th><th>评分</th><th>Review</th></tr></thead>
+      <tr><td><strong>Govee</strong></td><td>Smart Bulbs 4-Pack</td><td><span class="hl">21,734</span></td><td>$39.99</td><td>4.6</td><td>26,552</td></tr>
+      <tr><td><strong>Amazon Basics</strong></td><td>Smart A19 1-Pack</td><td><span class="hl">20,017</span></td><td>$11.99</td><td>4.4</td><td>13,661</td></tr>
+      <tr><td>Feit Electric</td><td>WiFi 3-Pack</td><td>6,591</td><td>$17.20</td><td>4.3</td><td>8,030</td></tr>
+      <tr><td>Linkind</td><td>Smart Bulbs 4-Pack</td><td>4,885</td><td>$21.99</td><td>4.5</td><td>497</td></tr>
+      <tr><td>Philips Hue</td><td>Essential 4-Pack</td><td>3,561</td><td>$52.95</td><td>4.6</td><td>721</td></tr>
+    </table>
+  </div>
+  <div class="metric-row">
+    <div class="metric-item"><div class="ml">直接竞品</div><div class="mv">0个</div></div>
+    <div class="metric-item"><div class="ml">品类状态</div><div class="mv">完全空白</div></div>
+    <div class="metric-item"><div class="ml">先发窗口</div><div class="mv">6-12月</div></div>
+    <div class="metric-item"><div class="ml">Top BSR</div><div class="mv">Govee #54</div></div>
+  </div>
+  <blockquote><strong>结论：</strong>无直接竞品。Govee(月销21K)和Amazon Basics(月销20K)是智能灯泡赛道老大，但均<strong>无投影功能</strong>。</blockquote>
+</div>
+
+<div class="section" id="s6">
+  <div class="sec-header"><span class="tag">06</span><h2>价格分析</h2><span class="sub">Price Analysis</span></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>价格区间</th><th>产品数</th><th>月销量</th><th>占比</th></tr></thead>
+      <tr><td>$5-10</td><td>35</td><td>218,781</td><td>34.68%</td></tr>
+      <tr><td>$10-20</td><td>38</td><td>233,929</td><td>37.07%</td></tr>
+      <tr><td>$20-25</td><td>14</td><td>88,828</td><td>14.08%</td></tr>
+      <tr><td>$30-50</td><td>8</td><td>73,159</td><td>11.59%</td></tr>
+    </table>
+  </div>
+  <p style="font-size:15px;margin:8px 0;">推荐定价 <strong style="color:#4a7abf;font-size:20px;">$29.99/个</strong>。Govee 4-Pack $39.99(合$10/个)但无投影。功能密度支撑高定价。</p>
+</div>
+
+<div class="section" id="s10">
+  <div class="sec-header"><span class="tag">10</span><h2>SWOT分析</h2><span class="sub">SWOT</span></div>
+  <div class="swot-g">
+    <div class="swot-it swot-s"><h4>✅ 优势 S</h4><ul><li>品类首创 — 市面无E26螺口投影灯泡</li><li>功能五合一 — 投影+变色+音乐+App+语音</li><li>13年LED制造经验</li><li>Kickstarter 751+支持者验证</li></ul></div>
+    <div class="swot-it swot-w"><h4>❌ 劣势 W</h4><ul><li>品牌零基础 — Amazon站内无认知</li><li>0 Review起步 — 冷启动难</li><li>单价较高 — 需强展示说服</li></ul></div>
+    <div class="swot-it swot-o"><h4>🟢 机会 O</h4><ul><li>品类空白，先发优势</li><li>Q4旺季搜索+68%验证</li><li>投影效果适合TikTok传播</li></ul></div>
+    <div class="swot-it swot-t"><h4>🔴 威胁 T</h4><ul><li>大牌跟进(Govee/Philips)</li><li>差评风险 — 买家秀差距</li><li>FCC认证缺失</li></ul></div>
   </div>
 </div>
 
-<!-- 04 -->
-<div class="block" id="s4">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 04</div><div class="title">搜索趋势分析</div><div class="sub">卖家精灵真实数据 2026.05</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>关键词</th><th>月搜索量</th><th>PPC竞价</th><th>购买率</th><th>推广策略</th></tr></thead>
-        <tbody>
-          <tr><td>smart light bulbs</td><td><span class="hl">82,381</span></td><td>$1.06</td><td>4.03%</td><td>成熟期主攻</td></tr>
-          <tr><td>party lights</td><td><span class="hl">48,889</span></td><td>$0.87</td><td>2.72%</td><td>场景词</td></tr>
-          <tr><td>mood lighting</td><td><span class="hl">36,982</span></td><td><span class="ok">$0.70</span></td><td>1.31%</td><td><span class="tag tag-green">冷启动首选</span></td></tr>
-          <tr><td>galaxy light projector</td><td><span class="hl">32,927</span></td><td>$1.20</td><td>2.60%</td><td>推广期</td></tr>
-          <tr><td>mood light</td><td>10,230</td><td><span class="ok">$0.35</span></td><td>1.82%</td><td>极低CPC</td></tr>
-          <tr><td>projection light bulb</td><td><span class="bad">≈0</span></td><td>—</td><td>0%</td><td><span class="tag tag-yellow">品类空白</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <blockquote>projection light bulb 搜索量为0 = 全新品类。引流靠mood lighting($0.70)和mood light($0.35)，Listing中完成品类教育转化。</blockquote>
+<div class="section" id="s12">
+  <div class="sec-header"><span class="tag">12</span><h2>产品定位与差异化</h2><span class="sub">含Govee对比</span></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>对比维度</th><th>Govee 智能灯泡</th><th>星空投影仪</th><th style="background:rgba(140,80,220,0.04);">Twelvetooo</th></tr></thead>
+      <tr><td style="font-weight:600;">代表产品</td><td>4-Pack ($39.99)</td><td>Astronaut ($15.99)</td><td style="background:rgba(140,80,220,0.02);">Smart Bulb ($29.99)</td></tr>
+      <tr><td style="font-weight:600;">投影效果</td><td><span class="bad">❌ 无</span></td><td>✅ 星空/极光</td><td style="background:rgba(140,80,220,0.02);"><span class="hl">✅ 极光投影</span></td></tr>
+      <tr><td style="font-weight:600;">音乐律动</td><td>✅ App控制</td><td><span class="bad">❌ 不支持</span></td><td style="background:rgba(140,80,220,0.02);"><span class="hl">✅ 内置麦克风</span></td></tr>
+      <tr><td style="font-weight:600;">安装</td><td>✅ 拧入灯座</td><td><span class="bad">❌ 需桌面插电</span></td><td style="background:rgba(140,80,220,0.02);"><span class="hl">✅ 拧入灯座</span></td></tr>
+      <tr><td style="font-weight:600;">Review基数</td><td>26,552</td><td>~2,363</td><td style="background:rgba(140,80,220,0.02);">0（起步）</td></tr>
+    </table>
+  </div>
+  <blockquote>不是换了颜色的灯泡（那是Govee），不是占地方的投影灯（那是星空仪）。而是把你家里的每一盏灯变成一场极光秀。</blockquote>
+</div>
+
+<div class="section" id="s16">
+  <div class="sec-header"><span class="tag">16</span><h2>行动路线图</h2><span class="sub">Roadmap</span></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>时间</th><th>事项</th><th>交付物</th><th>优先级</th></tr></thead>
+      <tr><td>2026.07</td><td>FCC/UL认证 + 素材拍摄</td><td>证书 + 6张图 + 60s视频</td><td><span class="tg tg-r">紧急</span></td></tr>
+      <tr><td>2026.08</td><td>KS发货 + Listing制作</td><td>发货完成 + 文案</td><td><span class="tg tg-r">紧急</span></td></tr>
+      <tr><td>2026.09</td><td>FBA头程 + VINE注册</td><td>到仓 + 激活</td><td><span class="tg tg-r">紧急</span></td></tr>
+      <tr><td>2026.10</td><td>产品上架 + 万圣节促销</td><td>Coupon 30%</td><td><span class="tg tg-r">紧急</span></td></tr>
+      <tr><td>2026.11</td><td>黑五/网一 Deal</td><td>Lightning Deal</td><td><span class="tg tg-r">紧急</span></td></tr>
+      <tr><td>2026.12</td><td>圣诞旺季</td><td>BSR Top 100</td><td><span class="tg tg-r">紧急</span></td></tr>
+    </table>
+  </div>
+  <blockquote>8月底完成Listing，9月初FBA发货。错过Q4窗口等来年Prime Day。</blockquote>
+</div>
+
+<div class="section" id="a1">
+  <div class="sec-header"><span class="tag" style="color:#b8860b;">A1</span><h2 style="background:linear-gradient(135deg,#8a6000,#b8860b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">财务模型</h2><span class="sub">Financial Model</span></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>项目</th><th>金额($)</th><th>说明</th></tr></thead>
+      <tr><td style="font-weight:600;">售价</td><td>$29.99</td><td>推荐定价</td></tr>
+      <tr><td style="font-weight:600;">采购成本</td><td>$6.50</td><td>含包装</td></tr>
+      <tr><td style="font-weight:600;">头程物流</td><td>$1.80</td><td>海运</td></tr>
+      <tr><td style="font-weight:600;">FBA费用</td><td>$4.76</td><td>大号标准尺寸</td></tr>
+      <tr><td style="font-weight:600;">佣金(15%)</td><td>$4.50</td><td>按$29.99</td></tr>
+      <tr><td style="font-weight:600;">广告费摊分</td><td>$3.00</td><td>ACoS 15%</td></tr>
+      <tr><td style="font-weight:700;color:#3a2060;border-top:1px solid rgba(140,80,220,0.1);"><strong>净利润</strong></td><td style="color:#3a2060;border-top:1px solid rgba(140,80,220,0.1);"><strong>$9.08</strong></td><td style="border-top:1px solid rgba(140,80,220,0.1);"><strong>利润率 30.3%</strong></td></tr>
+    </table>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>场景</th><th>月销量</th><th>月收入</th><th>月利润</th><th>年利润</th></tr></thead>
+      <tr><td>保守</td><td>500</td><td>$14,995</td><td>$4,540</td><td>$54,480</td></tr>
+      <tr><td>基准</td><td>1,000</td><td>$29,990</td><td>$9,080</td><td>$108,960</td></tr>
+      <tr><td>乐观</td><td>2,500</td><td>$74,975</td><td>$22,700</td><td>$272,400</td></tr>
+    </table>
+  </div>
+  <blockquote>盈亏平衡点在月销200件左右。首批发货500-800件，前3个月亏损可控在$15K以内。</blockquote>
+</div>
+
+<div class="section" id="a4">
+  <div class="sec-header"><span class="tag" style="color:#b8860b;">A4</span><h2 style="background:linear-gradient(135deg,#8a6000,#b8860b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">广告关键词表</h2><span class="sub">按阶段 · 按CPC</span></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>关键词</th><th>月搜索量</th><th>CPC</th><th>阶段</th><th>匹配</th><th>出价</th></tr></thead>
+      <tr><td>mood light</td><td>10,230</td><td>$0.35</td><td><span class="tg tg-g">冷启动</span></td><td>广泛+精准</td><td>$0.40</td></tr>
+      <tr><td>mood lighting</td><td>36,982</td><td>$0.70</td><td><span class="tg tg-g">冷启动</span></td><td>广泛</td><td>$0.75</td></tr>
+      <tr><td>party lights</td><td>48,889</td><td>$0.87</td><td><span class="tg tg-b">推广期</span></td><td>广泛+精准</td><td>$0.90</td></tr>
+      <tr><td>galaxy light projector</td><td>32,927</td><td>$1.20</td><td><span class="tg tg-b">推广期</span></td><td>精准</td><td>$1.10</td></tr>
+      <tr><td>smart light bulbs</td><td>82,381</td><td>$1.06</td><td><span class="tg tg-r">旺季</span></td><td>广泛+精准</td><td>$1.10</td></tr>
+    </table>
   </div>
 </div>
 
-<!-- 05 -->
-<div class="block" id="s5">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 05</div><div class="title">竞争格局分析</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>品牌</th><th>产品</th><th>月销量</th><th>价格</th><th>评分</th><th>Review</th></tr></thead>
-        <tbody>
-          <tr><td>Govee</td><td>Smart Bulbs 4-Pack</td><td><span class="hl">21,734</span></td><td>$39.99</td><td>4.6</td><td>26,552</td></tr>
-          <tr><td>Amazon Basics</td><td>Smart A19 1-Pack</td><td><span class="hl">20,017</span></td><td>$11.99</td><td>4.4</td><td>13,661</td></tr>
-          <tr><td>Feit Electric</td><td>WiFi 3-Pack</td><td>6,591</td><td>$17.20</td><td>4.3</td><td>8,030</td></tr>
-          <tr><td>Linkind</td><td>Smart Bulbs 4-Pack</td><td>4,885</td><td>$21.99</td><td>4.5</td><td>497</td></tr>
-          <tr><td>Philips Hue</td><td>Essential 4-Pack</td><td>3,561</td><td>$52.95</td><td>4.6</td><td>721</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="metric-row">
-      <div class="metric-item"><div class="m-label">直接竞品</div><div class="m-value">0个</div></div>
-      <div class="metric-item"><div class="m-label">品类空白</div><div class="m-value">E26投影灯泡</div></div>
-      <div class="metric-item"><div class="m-label">先发窗口</div><div class="m-value">6-12个月</div></div>
-      <div class="metric-item"><div class="m-label">竞品Review</div><div class="m-value">200-26K</div></div>
-    </div>
-    <blockquote>无直接竞品。Govee(月销21K)和Amazon Basics(月销20K)是智能灯泡赛道老大，但均无投影功能。Twelvetooo品类首创。</blockquote>
+<div class="section" id="a6">
+  <div class="sec-header"><span class="tag" style="color:#b8860b;">A6</span><h2 style="background:linear-gradient(135deg,#8a6000,#b8860b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">应急计划</h2><span class="sub">Emergency Plan</span></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>场景</th><th>触发条件</th><th>应对</th><th>响应</th></tr></thead>
+      <tr><td>FCC认证延迟</td><td>7月底未取得FCC</td><td>备用实验室/推迟发货</td><td>立即</td></tr>
+      <tr><td>差评爆发</td><td>上架30天 Rating&lt;3.5</td><td>暂停广告/主动联系买家</td><td>24h内</td></tr>
+      <tr><td>竞品跟卖</td><td>出现$19.99以下竞品</td><td>品牌注册/组合套餐</td><td>1周内</td></tr>
+      <tr><td>海运延迟</td><td>预计到仓1周后不可售</td><td>空运补货500件</td><td>48h内</td></tr>
+      <tr><td>大牌跟进</td><td>Govee上线投影灯泡</td><td>加速Review+BSR</td><td>持续监控</td></tr>
+    </table>
   </div>
-</div>
-
-<!-- 06 -->
-<div class="block" id="s6">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 06</div><div class="title">价格分析</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>价格区间</th><th>产品数</th><th>月销量</th><th>占比</th><th>策略</th></tr></thead>
-        <tbody>
-          <tr><td>$5-10</td><td>35</td><td>218,781</td><td>34.68%</td><td>不走量区</td></tr>
-          <tr><td>$10-20</td><td>38</td><td>233,929</td><td>37.07%</td><td>竞争激烈</td></tr>
-          <tr><td>$20-25</td><td>14</td><td>88,828</td><td>14.08%</td><td>价格认知带</td></tr>
-          <tr><td>$30-50</td><td>8</td><td>73,159</td><td>11.59%</td><td>高端区</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p>推荐定价 <strong style="color:#4a7abf;font-size:22px;">$29.99/个</strong>。Govee 4-Pack $39.99(合$10/个)但无投影功能。Twelvetooo照明+投影+音乐+智能四合一，功能密度支撑高定价。配合Coupon 30%制造$20.99超值感。</p>
-  </div>
-</div>
-
-<!-- 07 -->
-<div class="block" id="s7">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 07</div><div class="title">Review与口碑分析</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Review区间</th><th>ASIN占比</th><th>阶段目标</th></tr></thead>
-        <tbody>
-          <tr><td>0-100</td><td>28.76%</td><td>起步期</td></tr>
-          <tr><td>100-500</td><td>28.32%</td><td><span class="hl">3个月目标</span></td></tr>
-          <tr><td>500-1,000</td><td>10.89%</td><td>6个月目标</td></tr>
-          <tr><td>1,000+</td><td>32.03%</td><td>长期目标</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="signal-grid">
-      <div class="signal-item">"Love the music sync feature for parties"<div class="src">🎵 音乐律动 → 已具备</div></div>
-      <div class="signal-item">"Perfect mood lighting for my gaming setup"<div class="src">🎮 游戏氛围 → 投影更佳</div></div>
-      <div class="signal-item">"No hub required, easy setup"<div class="src">🔌 直连WiFi → 已具备</div></div>
-      <div class="signal-item">"Great for bedroom ambiance"<div class="src">🛏️ 卧室氛围 → 投影更佳</div></div>
-    </div>
-    <blockquote>57%的ASIN Review低于500。VINE 30个+Kickstarter 50-100个同步推进，3个月达100+ Review可超越半数竞品。</blockquote>
-  </div>
-</div>
-
-<!-- 08 -->
-<div class="block" id="s8">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 08</div><div class="title">广告投放基准</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>关键词</th><th>CPC</th><th>竞争</th><th>推荐</th></tr></thead>
-        <tbody>
-          <tr><td>smart light bulbs</td><td>$1.06</td><td>极高</td><td>3/5</td></tr>
-          <tr><td>mood lighting</td><td><span class="ok">$0.70</span></td><td>中低</td><td><span class="hl">5/5</span></td></tr>
-          <tr><td>mood light</td><td><span class="ok">$0.35</span></td><td>低</td><td><span class="hl">5/5</span></td></tr>
-          <tr><td>party lights</td><td>$0.87</td><td>中</td><td>4/5</td></tr>
-          <tr><td>galaxy light projector</td><td>$1.20</td><td>中</td><td>4/5</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <blockquote>冷启动不打大词。从mood lighting($0.70,37K/月)和mood light($0.35,10K/月)开始，ACoS可控35-40%。</blockquote>
-  </div>
-</div>
-
-<!-- 09 -->
-<div class="block" id="s9">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 09</div><div class="title">季节性趋势与上市时机</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>节点</th><th>时间</th><th>产品意义</th><th>备货</th></tr></thead>
-        <tbody>
-          <tr><td><span class="tag tag-yellow">万圣节</span></td><td>10月中</td><td>氛围灯需求激增</td><td>9月到仓</td></tr>
-          <tr><td><span class="tag tag-red">黑五/网一</span></td><td>11月下旬</td><td>全年最大促销窗口</td><td>10月到仓</td></tr>
-          <tr><td><span class="tag tag-red">圣诞/新年</span></td><td>12月</td><td>礼品+装饰顶峰</td><td>11月到仓</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="metric-row">
-      <div class="metric-item"><div class="m-label">10月→12月</div><div class="m-value">月销 +60%</div></div>
-      <div class="metric-item"><div class="m-label">galaxy projector</div><div class="m-value">搜索 +68%</div></div>
-      <div class="metric-item"><div class="m-label">推荐上市</div><div class="m-value">2026年10月</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- 10 -->
-<div class="block" id="s10">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 10</div><div class="title">SWOT分析</div></div></div>
-  <div class="block-body">
-    <div class="swot-row">
-      <div class="swot-item swot-s"><h4>✅ 优势 Strengths</h4><ul><li>品类首创 — 市面无E26螺口投影灯泡竞品</li><li>功能五合一 — 投影+变色+音乐+App+语音</li><li>零门槛安装 — 拧入现有灯具即可</li><li>13年LED制造经验</li></ul></div>
-      <div class="swot-item swot-w"><h4>❌ 劣势 Weaknesses</h4><ul><li>品牌零基础 — 无Amazon品牌认知</li><li>0 Review起步 — 冷启动转化率低</li><li>单价较高 — 需强展示说服买家</li></ul></div>
-      <div class="swot-item swot-o"><h4>🟢 机会 Opportunities</h4><ul><li>品类空白 — 先发优势明显</li><li>Q4旺季搜索+68%验证</li><li>投影效果适合TikTok传播</li></ul></div>
-      <div class="swot-item swot-t"><h4>🔴 威胁 Threats</h4><ul><li>大牌跟进 — Govee/Philips可能</li><li>差评风险 — 买家秀vs卖家秀</li><li>FCC认证缺失导致下架</li></ul></div>
-    </div>
-  </div>
-</div>
-
-<!-- 11 -->
-<div class="block" id="s11">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 11</div><div class="title">目标人群画像</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>人群</th><th>占比</th><th>年龄</th><th>场景</th></tr></thead>
-        <tbody>
-          <tr><td>Z世代氛围青年</td><td><span class="hl">35%</span></td><td>18-28</td><td>卧室/游戏房</td></tr>
-          <tr><td>千禧智能家居族</td><td>25%</td><td>28-40</td><td>全屋智能/客厅</td></tr>
-          <tr><td>派对主办者</td><td>15%</td><td>20-35</td><td>聚会/派对</td></tr>
-          <tr><td>家长为孩子</td><td>15%</td><td>30-45</td><td>儿童房夜灯</td></tr>
-          <tr><td>送礼人群</td><td>10%</td><td>20-45</td><td>节日礼品</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<!-- 12 -->
-<div class="block" id="s12">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 12</div><div class="title">产品定位与差异化（含Govee对比）</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>对比维度</th><th>Govee智能灯泡</th><th>星空投影仪</th><th style="background:rgba(140,80,220,0.06);">Twelvetooo</th></tr></thead>
-        <tbody>
-          <tr><td style="font-weight:600;">代表产品</td><td>4-Pack ($39.99)</td><td>Astronaut ($15.99)</td><td style="background:rgba(140,80,220,0.03);">Smart Bulb ($29.99)</td></tr>
-          <tr><td style="font-weight:600;">投影效果</td><td><span class="bad">❌ 无</span></td><td>✅ 星空/极光</td><td style="background:rgba(140,80,220,0.03);"><span class="hl">✅ 极光投影</span></td></tr>
-          <tr><td style="font-weight:600;">音乐律动</td><td>✅ App控制</td><td><span class="bad">❌ 不支持</span></td><td style="background:rgba(140,80,220,0.03);"><span class="hl">✅ 内置麦克风</span></td></tr>
-          <tr><td style="font-weight:600;">安装方式</td><td>✅ 拧入灯座</td><td><span class="bad">❌ 需桌面插电</span></td><td style="background:rgba(140,80,220,0.03);"><span class="hl">✅ 拧入灯座</span></td></tr>
-          <tr><td style="font-weight:600;">Review基数</td><td>26,552</td><td>~2,363</td><td style="background:rgba(140,80,220,0.03);">0（起步）</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <blockquote>不是换了颜色的灯泡（那是Govee），不是占地方的投影灯（那是星空仪）。而是把你家里的每一盏灯变成一场极光秀。</blockquote>
-  </div>
-</div>
-
-<!-- 13 -->
-<div class="block" id="s13">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 13</div><div class="title">Listing策略建议</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>层级</th><th>类型</th><th>关键词示例</th></tr></thead>
-        <tbody>
-          <tr><td>Tier1</td><td>核心品类词</td><td>smart light bulb, LED light bulb</td></tr>
-          <tr><td>Tier2</td><td>属性功能词</td><td>E26, WiFi, Alexa, music sync</td></tr>
-          <tr><td>Tier3</td><td>场景词</td><td>mood lighting, bedroom decor</td></tr>
-          <tr><td>Tier4</td><td>差异化词</td><td>projection light bulb, aurora</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p>标题建议: <em style="color:#5a3d7a;">Smart Light Bulb with Projection, Twelvetooo E26 LED, 16M Colors, Music Sync, Aurora Projector, Alexa & Google Home</em></p>
-  </div>
-</div>
-
-<!-- 14 -->
-<div class="block" id="s14">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 14</div><div class="title">营销与推广策略</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>阶段</th><th>时间</th><th>站内广告</th><th>日预算</th><th>站外</th></tr></thead>
-        <tbody>
-          <tr><td>冷启动</td><td>1-8周</td><td>SP精准长尾</td><td>$30-50</td><td>KS社群+Reddit</td></tr>
-          <tr><td>推广期</td><td>9-16周</td><td>SP+SB</td><td>$50-80</td><td>YouTube+博客</td></tr>
-          <tr><td>旺季冲刺</td><td>Q4</td><td>SP+SB+SD</td><td>$100-200</td><td>TikTok+IG</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="method-row">
-      <div class="method-item"><div class="ico">🌿</div><div class="ml">VINE计划</div><div class="mv">30个</div><div class="ms">2-4周·$200</div></div>
-      <div class="method-item"><div class="ico">🚀</div><div class="ml">KS种子用户</div><div class="mv">50-100个</div><div class="ms">751+支持者</div></div>
-      <div class="method-item"><div class="ico">📇</div><div class="ml">Insert Card</div><div class="mv">持续获取</div><div class="ms">合规引导</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- 15 -->
-<div class="block" id="s15">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 15</div><div class="title">风险与挑战</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>风险</th><th>概率</th><th>影响</th><th>等级</th><th>对策</th></tr></thead>
-        <tbody>
-          <tr><td>投影效果买家秀差距</td><td>中</td><td>致命</td><td><span class="tag tag-red">高</span></td><td>诚实展示</td></tr>
-          <tr><td>大牌跟进</td><td>中</td><td>高</td><td><span class="tag tag-yellow">中高</span></td><td>6-12月窗口建壁垒</td></tr>
-          <tr><td>FCC认证缺失</td><td>低</td><td>致命</td><td><span class="tag tag-yellow">中</span></td><td>立即确认</td></tr>
-          <tr><td>退货率偏高</td><td>中</td><td>中</td><td><span class="tag tag-blue">中</span></td><td>优化说明书</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<!-- 16 -->
-<div class="block" id="s16">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 16</div><div class="title">行动路线图</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>时间</th><th>事项</th><th>交付物</th><th>优先级</th></tr></thead>
-        <tbody>
-          <tr><td>2026.07</td><td>FCC/UL认证+素材拍摄</td><td>证书+6张图+60s视频</td><td><span class="tag tag-red">紧急</span></td></tr>
-          <tr><td>2026.08</td><td>KS发货+Listing制作</td><td>发货完成+文案</td><td><span class="tag tag-red">紧急</span></td></tr>
-          <tr><td>2026.09</td><td>FBA头程+VINE注册</td><td>到仓+激活</td><td><span class="tag tag-red">紧急</span></td></tr>
-          <tr><td>2026.10</td><td>产品上架</td><td>Coupon 30%</td><td><span class="tag tag-red">紧急</span></td></tr>
-          <tr><td>2026.11</td><td>黑五/网一Deal</td><td>Lightning Deal</td><td><span class="tag tag-red">紧急</span></td></tr>
-          <tr><td>2026.12</td><td>圣诞旺季</td><td>BSR Top 100</td><td><span class="tag tag-red">紧急</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <blockquote>8月底完成Listing，9月初FBA发货。错过Q4窗口等来年Prime Day。</blockquote>
-  </div>
-</div>
-
-<!-- 17 -->
-<div class="block" id="s17">
-  <div class="block-hdr"><div class="bar"></div><div class="content"><div class="num">SECTION 17</div><div class="title">附录：竞品ASIN监控清单</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>产品</th><th>ASIN</th><th>用途</th><th>频率</th></tr></thead>
-        <tbody>
-          <tr><td>Govee Smart Bulbs 4-Pack</td><td style="font-family:Consolas;font-size:12px;">B09B7NQT2K</td><td>销量/BSR/流量词</td><td>每周</td></tr>
-          <tr><td>Amazon Basics Smart A19</td><td style="font-family:Consolas;font-size:12px;">B0CG5VDC8P</td><td>价格/Review监控</td><td>每周</td></tr>
-          <tr><td>Linkind Smart Bulbs 4-Pack</td><td style="font-family:Consolas;font-size:12px;">B0CW1R212H</td><td>性价比路线</td><td>双周</td></tr>
-          <tr><td>Philips Hue Essential 4-Pack</td><td style="font-family:Consolas;font-size:12px;">B0FMGP1P6W</td><td>高端定价锚</td><td>每月</td></tr>
-          <tr><td>Feit Electric WiFi 3-Pack</td><td style="font-family:Consolas;font-size:12px;">B07ZWSZ431</td><td>低价区间</td><td>每月</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<!-- ===== 执行附录 ===== -->
-<div class="block" id="appendix">
-  <div class="block-hdr"><div class="bar" style="background:linear-gradient(180deg,#b8860b,#c4963b);"></div><div class="content"><div class="num" style="color:#b8860b;">EXECUTION APPENDIX</div><div class="title" style="background:linear-gradient(135deg,#8a6000,#b8860b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">执行附录 · 落地分析</div></div></div>
-  <div class="block-body">
-    <p style="color:rgba(30,24,37,0.6);font-size:15px;">本章涵盖财务模型、专利排查、技术实测、广告词表、红人清单、应急计划六项落地性分析，直接支撑运营执行。</p>
-  </div>
-</div>
-
-<!-- A1 财务模型 -->
-<div class="block" id="a1">
-  <div class="block-hdr"><div class="bar" style="background:linear-gradient(180deg,#4a7abf,#6b9fd8);"></div><div class="content"><div class="num" style="color:#4a7abf;">EXECUTION A1</div><div class="title">财务模型</div><div class="sub">利润测算 · 现金流 · 盈亏平衡</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>项目</th><th>金额($)</th><th>说明</th></tr></thead>
-        <tbody>
-          <tr><td style="font-weight:600;color:#1e1825;">亚马逊售价</td><td>$29.99</td><td>推荐定价</td></tr>
-          <tr><td style="font-weight:600;color:#1e1825;">Coupon后到手价</td><td>$20.99</td><td>冷启动期Coupon 30%</td></tr>
-          <tr><td style="font-weight:600;color:#1e1825;">产品采购成本</td><td>$6.50</td><td>含包材，按工厂MOQ 1000pcs估算</td></tr>
-          <tr><td style="font-weight:600;color:#1e1825;">头程物流(海运)</td><td>$1.80</td><td>按体积重估算，约20-25天</td></tr>
-          <tr><td style="font-weight:600;color:#1e1825;">亚马逊FBA费用</td><td>$4.76</td><td>大号标准尺寸，按最新费率</td></tr>
-          <tr><td style="font-weight:600;color:#1e1825;">亚马逊佣金(15%)</td><td>$4.50</td><td>按$29.99售价计算</td></tr>
-          <tr><td style="font-weight:600;color:#1e1825;">广告费/单品摊分</td><td>$3.00</td><td>按ACoS 15%估算</td></tr>
-          <tr><td style="font-weight:600;color:#1e1825;">月度仓储费</td><td>$0.35</td><td>按标准尺寸月度费率</td></tr>
-          <tr><td style="font-weight:600;color:#1e1825;"><strong>单品总成本</strong></td><td><strong>$20.91</strong></td><td>采购+物流+FBA+佣金+广告+仓储</td></tr>
-          <tr style="border-top:2px solid rgba(140,80,220,0.15);"><td style="font-weight:700;color:#3a2060;font-size:16px;"><strong>单品净利润</strong></td><td style="font-weight:700;color:#3a2060;font-size:16px;"><strong>$9.08</strong></td><td>利润率 <strong>30.3%</strong>（按售价$29.99）</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>场景</th><th>月销量</th><th>月收入</th><th>月利润</th><th>年利润</th></tr></thead>
-        <tbody>
-          <tr><td>保守</td><td>500</td><td>$14,995</td><td>$4,540</td><td>$54,480</td></tr>
-          <tr><td>基准</td><td>1,000</td><td>$29,990</td><td>$9,080</td><td>$108,960</td></tr>
-          <tr><td>乐观</td><td>2,500</td><td>$74,975</td><td>$22,700</td><td>$272,400</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="metric-row">
-      <div class="metric-item"><div class="m-label">盈亏平衡月销量</div><div class="m-value">~200件/月</div></div>
-      <div class="metric-item"><div class="m-label">单件Coupon成本</div><div class="m-value">$9.00</div></div>
-      <div class="metric-item"><div class="m-label">冷启动月预算</div><div class="m-value">$5,000</div></div>
-    </div>
-    <blockquote>按基准场景月销1,000件计算，年利润约$109K。盈亏平衡点在月销200件左右，前3个月冷启动期亏损可控在$15K以内。建议首批发货500-800件，降低库存风险。</blockquote>
-  </div>
-</div>
-
-<!-- A2 专利排查 -->
-<div class="block" id="a2">
-  <div class="block-hdr"><div class="bar" style="background:linear-gradient(180deg,#4a7abf,#6b9fd8);"></div><div class="content"><div class="num" style="color:#4a7abf;">EXECUTION A2</div><div class="title">专利排查</div><div class="sub">美国实用专利 · 外观专利 · 设计自由实施分析</div></div></div>
-  <div class="block-body">
-    <p>以下是针对E26螺口智能投影灯泡品类在USPTO数据库的关键专利排查方向：</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>专利类型</th><th>搜索关键词</th><th>风险等级</th><th>说明</th></tr></thead>
-        <tbody>
-          <tr><td>智能灯泡整体结构</td><td>smart bulb, LED bulb, E26</td><td><span class="tag tag-green">低</span></td><td>E26基础结构为通用标准，专利已过期</td></tr>
-          <tr><td>投影光学结构</td><td>projection lens, light projector bulb</td><td><span class="tag tag-yellow">中</span></td><td>需确认投影透镜模组是否落入现有专利</td></tr>
-          <tr><td>音乐律动光效</td><td>music sync light, sound reactive</td><td><span class="tag tag-yellow">中</span></td><td>算法类专利较多，建议确认代码独立开发</td></tr>
-          <tr><td>App控制界面</td><td>smart lighting app, IoT control</td><td><span class="tag tag-green">低</span></td><td>功能UI不构成专利侵权的可能性较低</td></tr>
-          <tr><td>外观设计</td><td>light bulb design, ornamental</td><td><span class="tag tag-yellow">中</span></td><td>需确认灯泡外形是否与竞品外观专利冲突</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="font-size:15px;color:rgba(30,24,37,0.7);margin-top:12px;"><strong>建议操作：</strong></p>
-    <ul style="list-style:none;padding:0;font-size:15px;color:rgba(30,24,37,0.75);">
-      <li style="padding:4px 0 4px 20px;position:relative;">1. 委托专利律师在USPTO进行FTO(自由实施)检索，重点查USPTO Class 362/362和D26/26</li>
-      <li style="padding:4px 0 4px 20px;position:relative;">2. 检索关键词组合: "projection" + "light bulb" + "E26", "music sync" + "LED"</li>
-      <li style="padding:4px 0 4px 20px;position:relative;">3. 关注Signify(Philips Hue)、Govee、Nanoleaf近3年授权的相关专利</li>
-      <li style="padding:4px 0 4px 20px;position:relative;">4. 如发现高风险专利，立即评估规避设计方案</li>
-      <li style="padding:4px 0 4px 20px;position:relative;">5. 同时提交美国外观专利申请，建立自身的知识产权壁垒</li>
-    </ul>
-    <blockquote>专利排查建议在7月内完成。如FTO报告存在风险，需要额外2-4周做规避设计。这是FCC之外另一个可能影响上线时间的因素。</blockquote>
-  </div>
-</div>
-
-<!-- A3 技术实测 -->
-<div class="block" id="a3">
-  <div class="block-hdr"><div class="bar" style="background:linear-gradient(180deg,#4a7abf,#6b9fd8);"></div><div class="content"><div class="num" style="color:#4a7abf;">EXECUTION A3</div><div class="title">技术实测清单</div><div class="sub">硬件 · 软件 · 兼容性 · 安全</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>测试项目</th><th>测试内容</th><th>通过标准</th><th>优先级</th></tr></thead>
-        <tbody>
-          <tr><td style="font-weight:600;">WiFi连接稳定性</td><td>2.4GHz双路由器环境测试，连续运行7天</td><td>断连次数≤3次/7天</td><td><span class="tag tag-red">P0</span></td></tr>
-          <tr><td style="font-weight:600;">App配对成功率</td><td>iOS+Android各测试50次配对</td><td>首次配对成功率≥95%</td><td><span class="tag tag-red">P0</span></td></tr>
-          <tr><td style="font-weight:600;">投影清晰度</td><td>距墙1m/2m/3m三种距离评测</td><td>3m可见清晰极光轮廓</td><td><span class="tag tag-red">P0</span></td></tr>
-          <tr><td style="font-weight:600;">音乐律动延迟</td><td>三种音乐风格测试，采集延迟数据</td><td>延迟≤200ms</td><td><span class="tag tag-red">P0</span></td></tr>
-          <tr><td style="font-weight:600;">Alexa/Google兼容</td><td>全语音指令测试</td><td>指令识别率≥98%</td><td><span class="tag tag-yellow">P1</span></td></tr>
-          <tr><td style="font-weight:600;">发热测试</td><td>持续点亮8小时测温</td><td>灯体温度≤60C</td><td><span class="tag tag-yellow">P1</span></td></tr>
-          <tr><td style="font-weight:600;">多设备联动</td><td>10个/30个/50个设备同时控制</td><td>响应延迟≤3s(50个)</td><td><span class="tag tag-yellow">P1</span></td></tr>
-          <tr><td style="font-weight:600;">定时/自动化</td><td>设置10组定时任务连续测试</td><td>执行准确率≥99%</td><td><span class="tag tag-yellow">P1</span></td></tr>
-          <tr><td style="font-weight:600;">包装跌落测试</td><td>1m自由跌落6面各2次</td><td>无功能损坏</td><td><span class="tag tag-green">P2</span></td></tr>
-          <tr><td style="font-weight:600;">EMC/EMI</td><td>FCC实验室预扫</td><td>FCC Part 15B Class B</td><td><span class="tag tag-red">P0</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <blockquote>P0项必须在FBA发货前完成，P1项在Listing上线前完成。建议制作测试报告PDF，上传至A+页面作为品质背书。</blockquote>
-  </div>
-</div>
-
-<!-- A4 广告词表 -->
-<div class="block" id="a4">
-  <div class="block-hdr"><div class="bar" style="background:linear-gradient(180deg,#4a7abf,#6b9fd8);"></div><div class="content"><div class="num" style="color:#4a7abf;">EXECUTION A4</div><div class="title">详细广告关键词表</div><div class="sub">按阶段 · 按类型 · 按CPC</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>关键词</th><th>月搜索量</th><th>CPC</th><th>阶段</th><th>匹配类型</th><th>建议出价</th></tr></thead>
-        <tbody>
-          <tr><td style="border-left:3px solid rgba(90,143,90,0.3);">mood light</td><td>10,230</td><td>$0.35</td><td><span class="tag tag-green">冷启动</span></td><td>广泛+精准</td><td>$0.40</td></tr>
-          <tr><td style="border-left:3px solid rgba(90,143,90,0.3);">mood lighting</td><td>36,982</td><td>$0.70</td><td><span class="tag tag-green">冷启动</span></td><td>广泛</td><td>$0.75</td></tr>
-          <tr><td style="border-left:3px solid rgba(90,143,90,0.3);">mood lighting for bedroom</td><td>4,932</td><td>$1.16</td><td><span class="tag tag-green">冷启动</span></td><td>精准</td><td>$1.00</td></tr>
-          <tr><td style="border-left:3px solid rgba(74,122,191,0.3);">party lights</td><td>48,889</td><td>$0.87</td><td><span class="tag tag-blue">推广期</span></td><td>广泛+精准</td><td>$0.90</td></tr>
-          <tr><td style="border-left:3px solid rgba(74,122,191,0.3);">galaxy light projector</td><td>32,927</td><td>$1.20</td><td><span class="tag tag-blue">推广期</span></td><td>精准</td><td>$1.10</td></tr>
-          <tr><td style="border-left:3px solid rgba(74,122,191,0.3);">color changing light bulb</td><td>39,864</td><td>$2.18</td><td><span class="tag tag-blue">推广期</span></td><td>精准</td><td>$1.50</td></tr>
-          <tr><td style="border-left:3px solid rgba(184,80,80,0.3);">smart light bulbs</td><td>82,381</td><td>$1.06</td><td><span class="tag tag-red">旺季</span></td><td>广泛+精准</td><td>$1.10</td></tr>
-          <tr><td style="border-left:3px solid rgba(184,80,80,0.3);">smart light bulb</td><td>9,834</td><td>$1.06</td><td><span class="tag tag-red">旺季</span></td><td>精准</td><td>$0.95</td></tr>
-          <tr><td style="border-left:3px solid rgba(184,80,80,0.3);">party decoration lights</td><td>12,445</td><td>$0.95</td><td><span class="tag tag-red">旺季</span></td><td>广泛</td><td>$0.85</td></tr>
-          <tr><td style="border-left:3px solid rgba(184,80,80,0.3);">bedroom night light</td><td>8,210</td><td>$0.82</td><td><span class="tag tag-red">旺季</span></td><td>精准</td><td>$0.75</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="tag-group" style="margin-top:12px;">
-      <span class="tag-item" style="border-left:3px solid rgba(90,143,90,0.3);margin-left:0;">冷启动(1-8周): 预算$30-50/天，主打mood light+mood lighting</span>
-      <span class="tag-item" style="border-left:3px solid rgba(74,122,191,0.3);">推广期(9-16周): 预算$50-80/天，拓展party lights+galaxy projector</span>
-      <span class="tag-item" style="border-left:3px solid rgba(184,80,80,0.3);">旺季(Q4): 预算$100-200/天，全类型词投放</span>
-    </div>
-  </div>
-</div>
-
-<!-- A5 红人清单 -->
-<div class="block" id="a5">
-  <div class="block-hdr"><div class="bar" style="background:linear-gradient(180deg,#4a7abf,#6b9fd8);"></div><div class="content"><div class="num" style="color:#4a7abf;">EXECUTION A5</div><div class="title">红人推广清单</div><div class="sub">YouTube · TikTok · Instagram · 博客</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>红人/渠道</th><th>粉丝量级</th><th>内容形式</th><th>预计成本</th><th>预期效果</th><th>优先级</th></tr></thead>
-        <tbody>
-          <tr><td>TikTok智能家居类达人</td><td>10K-100K</td><td>15s投影效果展示</td><td>$100-300/条</td><td>单条爆款可达百万播放</td><td><span class="tag tag-red">高</span></td></tr>
-          <tr><td>YouTube开箱评测频道</td><td>50K-500K</td><td>8-15min详细评测</td><td>$500-2,000/条</td><td>长尾流量，SEO价值</td><td><span class="tag tag-red">高</span></td></tr>
-          <tr><td>Instagram家居装饰博主</td><td>10K-100K</td><td>图文+Reels短视讯</td><td>$100-500/条</td><td>精准家居人群触达</td><td><span class="tag tag-yellow">中</span></td></tr>
-          <tr><td>智能家居博客/媒体</td><td>—</td><td>图文评测+买家指南</td><td>寄送样品</td><td>Review外链+SEO</td><td><span class="tag tag-yellow">中</span></td></tr>
-          <tr><td>Reddit r/smarthome</td><td>2M+ subscribers</td><td>图文帖+AMA</td><td>零成本</td><td>精准口碑传播</td><td><span class="tag tag-yellow">中</span></td></tr>
-          <tr><td>Kickstarter社群</td><td>751+种子用户</td><td>专属优惠码邮件</td><td>零成本</td><td>种子用户转化+Review</td><td><span class="tag tag-red">高</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="font-size:15px;color:rgba(30,24,37,0.7);margin-top:12px;"><strong>红人开发话术模板：</strong></p>
-    <blockquote>"Hi [Name], we just launched the world's first E26 smart projection bulb on Kickstarter (1,239% funded). It turns any lamp into an aurora light show. We'd love to send you a free sample for an honest review. Your audience would love seeing the projection effect in action. Let me know if interested!"</blockquote>
-  </div>
-</div>
-
-<!-- A6 应急计划 -->
-<div class="block" id="a6">
-  <div class="block-hdr"><div class="bar" style="background:linear-gradient(180deg,#4a7abf,#6b9fd8);"></div><div class="content"><div class="num" style="color:#4a7abf;">EXECUTION A6</div><div class="title">应急计划</div><div class="sub">风险预案 · 阈值触发 · 应对流程</div></div></div>
-  <div class="block-body">
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>场景</th><th>触发条件</th><th>应对措施</th><th>响应时间</th></tr></thead>
-        <tbody>
-          <tr style="border-left:3px solid rgba(184,80,80,0.3);">
-            <td style="font-weight:600;">FCC认证延迟</td>
-            <td>7月底仍未取得FCC证书</td>
-            <td>1) 启动备用认证实验室加急通道<br>2) 推迟FBA发货至9月中旬<br>3) 信息透明同步Kickstarter支持者</td>
-            <td>立即</td>
-          </tr>
-          <tr style="border-left:3px solid rgba(184,80,80,0.3);">
-            <td style="font-weight:600;">首批产品差评爆发</td>
-            <td>上架30天内Rating低于3.5</td>
-            <td>1) 立即暂停广告<br>2) 主动联系差评买家提供替换<br>3) 排查批量问题批次<br>4) 召回FBA库存检测</td>
-            <td>24小时内</td>
-          </tr>
-          <tr style="border-left:3px solid rgba(184,80,80,0.3);">
-            <td style="font-weight:600;">竞品跟卖/低价截流</td>
-            <td>出现$19.99以下竞品</td>
-            <td>1) 强化品牌注册(Transparency)<br>2) 差异化组合套餐(2个装/含灯座)<br>3) 加大A+内容和视频投入</td>
-            <td>1周内</td>
-          </tr>
-          <tr style="border-left:3px solid rgba(184,80,80,0.3);">
-            <td style="font-weight:600;">海运延迟/被查验</td>
-            <td>预计到仓日1周后仍不可售</td>
-            <td>1) 启用空运补货(500件应急)<br>2) 调整广告预算至到仓日<br>3) 推迟VINE注册时间</td>
-            <td>48小时内</td>
-          </tr>
-          <tr style="border-left:3px solid rgba(184,80,80,0.3);">
-            <td style="font-weight:600;">Listing被下架/侵权投诉</td>
-            <td>收到侵权通知</td>
-            <td>1) 立即下架相关变体<br>2) 联系律师出具反通知<br>3) 准备设计变更方案</td>
-            <td>2小时内</td>
-          </tr>
-          <tr style="border-left:3px solid rgba(184,80,80,0.3);">
-            <td style="font-weight:600;">大牌跟进推出同类</td>
-            <td>Govee/Philips上线投影灯泡</td>
-            <td>1) 加速Review积累和BSR排名<br>2) 差异化为价格优势<br>3) 强化Twelvetooo品牌故事</td>
-            <td>持续监控</td>
-          </tr>
-          <tr style="border-left:3px solid rgba(184,80,80,0.3);">
-            <td style="font-weight:600;">Coupon亏损超出预算</td>
-            <td>Coupon使用率超过预期50%</td>
-            <td>1) 设置Coupon预算上限<br>2) 降至20% Off<br>3) 转投Lightning Deal</td>
-            <td>实时</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <blockquote>建议建立"应急响应小组"微信群，成员至少包含：运营负责人(决策)、厂家联系人(产品)、物流对接人(发货)、律师(合规)。所有应急场景要求在30分钟内完成信息通报、2小时内启动执行。</blockquote>
-  </div>
+  <blockquote>建立应急响应小组：运营负责人+厂家+物流+律师，30分钟内通报，2小时内启动执行。</blockquote>
 </div>
 
 <hr>
-<div style="text-align:center;padding:20px 0;"><p style="font-size:12px;color:rgba(60,40,80,0.2);">数据来源: 卖家精灵Top100 + 关键词挖掘1727 + 25竞品 + 品牌分析 + 行业报告</p></div>
+<div style="text-align:center;padding:16px 0;"><span style="font-size:12px;color:rgba(60,40,80,0.15);">数据来源: 卖家精灵Top100 + 关键词挖掘1727 + 25竞品 + 品牌分析 + 行业报告</span></div>
 
 <div class="footer">Twelvetooo Smart Projection Bulb — 亚马逊美国站市场调研报告<br>2026年7月 · 数据由卖家精灵 + 品牌分析验证</div>
 
